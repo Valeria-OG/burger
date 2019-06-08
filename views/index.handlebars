@@ -1,71 +1,159 @@
-<div class="row">
-
- <center>
-
-   <div class="col-md-4">
-
-     <h3 class="submitFont">Burgers Available</h3>
-
-     <div id="burgersAvailable">
+<div class="container">
 
 
-       {{#each burgers}}
 
-         {{#unless devoured}}
+    <div class="jumbotron">
 
-         <form action="burger/eat/{{id}}" method="POST">
+        <h1>Order Your Burger </h1>
 
-           <div class="input-group">
+        <p>Burger Orders for Pickup.</p>
 
-             <li class="form-control">{{id}}. {{burger_name}}</li>
+        <br>
 
-               <span class="input-group-btn">
+        <h2>Select a Burger or Sandwich</h2>
 
-                 <button class="btn btn-success devour-button" type="submit">Devour It!</button>
+        <panel>
 
-               </span>
+            <form class="create-form">
 
-           </div>
+                <div class="form-group">
 
-         </form>
+                    <label for="newburger">Order Fresh Burger</label>
 
-         {{/unless}}
+                    {{!-- <input type="text" id="newburger" name="burger"> --}}
 
-       {{/each}}
+                    <select data-placeholder="" id="newburger" name="burger">
 
-     </div>
+                        <option value="Nothing Selected" selected>Please Select a Sandwich</option>
 
-   </div>
+                        <option value="Hamburger">Hamburger</option>
+
+                        <option value="CheeseBurger">CheeseBurger</option>
+
+                        <option value="DoubleBfChz">Double Up (double meat and cheese)</option>
+
+                        <option value="VeggieBurger">Veggie Burger</option>
+
+                        <option value="PulledPork">Pulled Pork Sandwich</option>
+
+                        <option value="ChichenClub">Chicken Club Sandwich</option>
+
+                        <option value="SteaknChz">Steak and Cheese Sandwich</option>
+
+                    </select>
 
 
-   <div class="col-md-4"></div>
+
+                    <button type="submit" class="btn btn-success" id="addburger">
+
+                        <span class="fa fa-thumbs-up"></span>
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </panel>
+
+    </div>
+
+    <div class="row">
+
+        <div class="col-sm-6">
+
+            <div class="panel panel-default">
+
+                <div class="panel-heading" id="leftside"><strong>Order Your Burger</strong>
+
+                    <p>Send order to cashier when ready for pick up</p>
+
+                </div>
+
+                <div class="panel-body">
 
 
-   <div class="col-md-4">
 
-     <h3 class="submitFont">Burgers Devoured</h3>
+                    <ul>
 
-     <div id="alreadyEaten">
+                        {{#each burgers}}
+
+                        {{#unless devoured}}
 
 
-       {{#each burgers}}
 
-         {{#if this.devoured}}
+                        <span><strong> {{this.id}} - {{this.burger_name}}</strong></span>
 
-           <div class="input-group">
+                        <button type="button" class="eatburger btn btn-warning" id="eatbutton" data-id="{{this.id}}"
 
-             <li class="form-control">{{this.id}}. {{this.burger_name}}</li>
+                            data-newDevoured="{{devour}}"><span class="fa fa-usd"></span></button>
 
-           </div>
+                        <hr>
 
-         {{/if}}
+                        {{/unless}}
 
-       {{/each}}
+                        {{/each}}
 
-     </div>
+                    </ul>
 
-   </div>
 
- </center>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-sm-6">
+
+            <div class="panel panel-default">
+
+                <div class="panel-heading" id="rightside"><strong>Burger is Ready for Pick Up</strong>
+
+                    <p>Remove order from pick up when delivered</p>
+
+                </div>
+
+                <div class="panel-body">
+
+                    <ul>
+
+                        {{#each burgers}}
+
+                        {{#if devoured}}
+
+                        <span><strong> {{this.id}} - {{this.burger_name}}</strong></span>
+
+                        <button type="button" class="trashburger btn btn-danger" id="trashbutton" data-id="{{this.id}}"
+
+                            data-newDevoured="{{devour}}"><span class="fa fa-trash"></span></button>
+
+                        <hr>
+
+                        {{/if}}
+
+                        {{/each}}
+
+                    </ul>
+
+
+
+
+
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+    </div>
+
+    <!--endrow -->
 
 </div>
+
+<!--endcontainer -->

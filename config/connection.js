@@ -1,20 +1,23 @@
 var mysql = require("mysql");
-var inquirer = require("inquirer");
 
-var connection = mysql.createConnection({
+if (process.env.JAWSDB_URL) {
+
+  connection = mysql.createConnection(process.env.JAWSDB_URL);
+
+} else {
+
+  connection = mysql.createConnection({
+
     host: "localhost",
-    port: 3306,
-    user: "paola",
-    password: "paola12152000",
+    port: "3306",
+    user: "valeria",
+    password: "#Cali2016Lhs",
     database: "burgers_db"
-})
 
-connection.connect(function (err) {
-    if (err) {
-        console.error("error connecting: " + err.stack);
-        return;
-    }
-    console.log("connected as id " + connection.threadId);
-});
+  });
+
+}
+
+connection.connect();
 
 module.exports = connection;
