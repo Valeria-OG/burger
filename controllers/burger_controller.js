@@ -1,103 +1,58 @@
-var express = require("express");
+var burger = require('../models/burger.js');
 
-var burger = require("../model/burger");
+module.exports=function(app){
 
-
-
-var router = express.Router();
+  app.get('/', function (req, res) 
 
 
+{
 
-router.get("/", function(req, res) {
+  res.redirect('/index');
 
-  burger.selectAll(function(data) {
+});
 
-    var hdbrsObj = {
+app.get('/index', function (req, res) 
 
-      burgers: data
+{
 
-    };
+  burger.selectAll(function(data) 
 
-    console.log(hdbrsObj);
+  {
 
-    res.render("index", hdbrsObj);
+    var hbsObject = { burgers: data };
 
-  });
-
-
-
-  router.post("/api/burgers", function(req, res) {
-
-    burger.insertOne(
-
-      ["burger_name", "devoured"],
-
-      [req.body.burger_name, req.body.devoured],
-
-      function(result) {
-
-        // Send back the ID of new burger
-
-        res.json({ id: result.insertId });
-
-      }
-
-    );
-
-  });
-
-  router.put("/api/burgers/:id", function(req, res) {
-
-    var condition = "id = " + req.params.id;
-
-
-
-    console.log("condition", condition);
-
-    burger.updateOne({ devoured: req.body.devoured }, condition, function(
-
-      result
-
-    ) {
-
-      if (result.changedRows === 0) {
-
-        return res.status(404).end();
-
-      } else {
-
-        res.status(200).end();
-
-      }
-
-    });
-
-  });
-
-  router.delete("/api/burgers/:id", function(req, res) {
-
-    var condition = "id = " + req.params.id;
-
-    console.log("condition", condition);
-
-
-
-    burger.deleteOne(condition, function(result) {
-
-      if (result.changedRows === 0) {
-
-        return res.status(404).end();
-
-      } else {
-
-        res.status(200).end();
-
-      }
-
-    });
+    res.render('index.handlebars', hbsObject);
 
   });
 
 });
 
-module.exports = router;
+app.post('/burger/create', function (req, res) 
+
+{
+
+  burger.insertOne(req.body.burger_name, function() 
+
+  {
+
+    res.redirect('/index');
+
+  });
+
+});
+
+app.post('/burger/eat/:id', function (req, res) 
+
+{
+
+  burger.updateOne(req.params.id, function() 
+
+  {
+
+    res.redirect('/index');
+
+  });
+
+});
+
+}

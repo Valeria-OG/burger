@@ -1,45 +1,83 @@
-.jumbotron {
+body {
 
-  background-image: url("../img/burgerpic2.png");
-
-  background-repeat: no-repeat;
-
-  background-position: right;
-
-  background-color: #000000;
-
-  color: #ffffff;
-
-  margin-top: 3%;
+  background-color: #8400ff;
 
 }
 
-#newburger {
+.jumbotron h1{
 
-  color: #5c5c5c;
+    color: #faebf5;
+
+    text-align: center;
 
 }
 
-#leftside {
+.jumbotron{
 
-  background-color: #5c5c5c;
+    padding-top: 1%;
 
-  color: white;
+    background-color:#8400ff;
+
+    text-align: center;
+
+}
+
+img {
+
+margin-top: 5%;
+
+
+
+  width: 15%;
+
+}
+
+.submitFont{
+
+    color: rgb(114, 240, 114);
+
+    text-align: center; 
+
+    padding-top: 1%;
+
+}
+
+
+
+.add {
 
   text-align: center;
 
-  font-size: 1.3em;
+}
+
+
+
+.button {
+
+width: 150px;
+
+text-align: center;
+
+margin:0 auto;
 
 }
 
-#rightside {
 
-  background-color: #e49322;
 
-  color: white;
+#text{
 
-  text-align: center;
+width: 100%;
 
-  font-size: 1.3em;
+text-align: center;
+
+}
+
+
+
+#bName{
+
+margin-left: auto;
+
+margin-right: auto;
 
 }
